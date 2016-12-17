@@ -1,0 +1,41 @@
+{
+    "common": {
+        "name":                     "ebus",
+        "version":                  "0.0.1",
+	    "news": {
+			"0.0.1": {
+			  "en": "beta version",
+			  "de": "Betaversion",
+			  "ru": "Бета версия"
+			},
+			"0.0.1": {
+			  "en": "initial adapter",
+			  "de": "Initiale Version",
+			  "ru": "Первоначальный адаптер"
+			}
+		},
+        "title":                    "ebus adapter",
+        "desc":                     {
+				 "en": "ioBroker eBus adapter",
+				 "de": "ioBroker eBus Adapter",
+				 "ru": "ioBroker EBUS адаптер"
+		},
+        "platform":                 "Javascript/Node.js",
+        "mode":                     "daemon",
+        "icon":                     "ebus.png",
+        "enabled":                  true,
+		"extIcon":                  "",
+		"keywords":                 ["ebus", "Vaillant", "Wolf", "Heizung"],
+        "readme":                   "",
+		"loglevel":                 "info",
+        "type":                     "common adapters",
+        "restartAdapters":          []
+    },
+    "native": {
+        "host": true,
+        "port": 8888
+    },
+    "objects": [
+
+    ]
+}

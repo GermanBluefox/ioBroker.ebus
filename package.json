@@ -1,0 +1,40 @@
+{
+  "name": "iobroker.ebus",
+  "version": "0.0.1",
+  "description": "ioBroker eBus Adapter",
+  "author": {
+    "name": "Hoich",
+    "email": "@@email@@"
+  },
+  "contributors": [
+    {
+      "name": "LennyCB",
+      "email": "lenny.cb@arcor.de"
+    }
+  ],
+  "homepage": "",
+  "license": "MIT",
+  "keywords": [
+    "ioBroker",
+    "eBus",
+    "Smart Home",
+    "home automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+      "grunt": "^0.4.5",
+      "grunt-replace": "^0.9.3",
+      "grunt-contrib-jshint": "^0.11.2",
+      "grunt-jscs": "^2.0.0",
+      "grunt-http": "^1.6.0"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "readmeFilename": "README.md"
+}
