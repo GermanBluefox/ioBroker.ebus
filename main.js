@@ -86,6 +86,47 @@ adapter.on('ready', function () {
     main();
 });
 
+
+// Delete all states from array (one after each other)
+function deleteStates(states, callback) {
+     // If array is empty => finished
+     if (!states || !states.length) {
+        if (callback) callback();
+        return;
+     }
+     
+     // Get one ID
+     var id = states.pop();
+     
+     // Delete Object
+     adapter.delObject(id, function (err) {
+        // Delete state
+        adapter.delState(id, function (err) {
+           // Go to next ID
+           setTimeout(deleteStates, 0, states, callback);
+        });          
+     });
+}
+
+function cleanStates(cb) {
+	
+	// Get all IDs of this adapter
+	adapter.getStates('*', function (err, states) {
+		var toDelete = [];
+		// collect all states that are empty to array
+		for (var id in states) {
+			// test value and store ID if value is empty
+			if (states[id].val.indexOf('ERR: no signal') !== -1) toDelete.push(id);
+		}
+
+		// gently delete all empty states
+		deleteStates(toDelete, function() {
+		    adapter.log.info('delete finished');
+			if (typeof cb === 'function') cb();
+		});
+	});
+}
+
 function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
@@ -212,8 +253,10 @@ function parse(data) {
 
 var client = new net.Socket();
 client.connect(adapter.config.port, adapter.config.host, function() {
-   adapter.log.debug('Connected to ebusd on ' + adapter.config.host + ':' + adapter.config.port);
-   client.write(req + '\n');
+    adapter.log.debug('Connected to ebusd on ' + adapter.config.host + ':' + adapter.config.port);
+    client.write(req + '\n');
+	// Call after 10 seconds clean process to remove empty states. But it is wrong :) Better to create state if you get valid data.
+	setTimeout(cleanStates, 10000);
 });
 
 var databuf = '';
